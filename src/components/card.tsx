@@ -50,6 +50,7 @@ export const Card: FC<CardProps> = ({ repairOrder }) => {
         <div className="to-list">
           {repairOrder.transferOrders.map((transferOrder) => (
             <div
+              key={transferOrder}
               className="to"
               onClick={(_) =>
                 removeTransferOrder({

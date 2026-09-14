@@ -208,7 +208,7 @@ export const LeftPane = () => {
       .trim();
 
     if (
-      value.substring(
+      e.currentTarget.value.substring(
         e.currentTarget.selectionStart - 2,
         e.currentTarget.selectionStart - 1,
       ) === "*" ||
@@ -244,6 +244,10 @@ export const LeftPane = () => {
         break;
     }
 
+    console.log("hi");
+    console.log(
+      `${value.substring(0, e.currentTarget.selectionStart - 1)} *${e.currentTarget.value.substring(e.currentTarget.selectionStart - 1, e.currentTarget.value.length)}`,
+    );
     setValue(
       `${value.substring(0, e.currentTarget.selectionStart - 1)} *${e.currentTarget.value.substring(e.currentTarget.selectionStart - 1, e.currentTarget.value.length)}`,
     );
@@ -265,6 +269,7 @@ export const LeftPane = () => {
         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
           setValue(e.target.value)
         }
+        onDoubleClick={onDoubleClickTextArea}
         value={value}
       />
       {/* <div> */}
