@@ -201,6 +201,59 @@ export const LeftPane = () => {
     //   .querySelector("div")
     //   .appendChild(anchor);
   };
+
+  const onDoubleClickTextArea = (e: React.MouseEvent<HTMLTextAreaElement>) => {
+    const selectedText = value
+      .substring(e.currentTarget.selectionStart, e.currentTarget.selectionEnd)
+      .trim();
+
+    if (
+      value.substring(
+        e.currentTarget.selectionStart - 2,
+        e.currentTarget.selectionStart - 1,
+      ) === "*" ||
+      selectedText.length === 17
+    ) {
+      navigator.clipboard.writeText(selectedText);
+      return;
+    }
+
+    const make = e.currentTarget.dataset.make;
+    switch (make) {
+      case "FRH":
+        switch (selectedText) {
+          case "TWS0013":
+            navigator.clipboard.writeText(`TWS0013:OW`);
+            break;
+          case "2420CRT":
+            navigator.clipboard.writeText(`2420C-RT:BRM`);
+            break;
+          case "B160":
+            navigator.clipboard.writeText(`B160JAB:BF`);
+            break;
+          default:
+            navigator.clipboard.writeText(`${selectedText}:FRD`);
+            break;
+        }
+        break;
+      case "IZ":
+        navigator.clipboard.writeText(formatIsuzu(selectedText));
+        break;
+      default:
+        navigator.clipboard.writeText(selectedText);
+        break;
+    }
+
+    setValue(
+      `${value.substring(0, e.currentTarget.selectionStart - 1)} *${e.currentTarget.value.substring(e.currentTarget.selectionStart - 1, e.currentTarget.value.length)}`,
+    );
+  };
+
+  const formatIsuzu = (string: string) => {
+    if (string.length != 10) return string;
+    return `${string.replace(/(\d{1})(\d{5})(\d{3})(\d{1})/, "$1-$2-$3-$4")}:IZ`;
+  };
+
   return (
     <div id="parse-container">
       <button id="parse-button" onClick={onParseButtonPress}>

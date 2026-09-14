@@ -198,7 +198,7 @@ textarea {
   flex-grow: 1;
 }
 
-select:has(option[value='']:checked) {
+select:has(option[value='Other']:checked) {
   background-color: lightcoral;
 }
 
