@@ -218,6 +218,13 @@ export const LeftPane = () => {
       return;
     }
 
+    console.log(
+      `${value.substring(0, e.currentTarget.selectionStart - 1)} *${e.currentTarget.value.substring(e.currentTarget.selectionStart - 1, e.currentTarget.value.length)}`,
+    );
+    setValue(
+      `${value.substring(0, e.currentTarget.selectionStart - 1)} *${e.currentTarget.value.substring(e.currentTarget.selectionStart - 1, e.currentTarget.value.length)}`,
+    );
+
     const make = e.currentTarget.dataset.make;
     switch (make) {
       case "FRH":
@@ -241,16 +248,8 @@ export const LeftPane = () => {
         break;
       default:
         navigator.clipboard.writeText(selectedText);
-        console.log("hi");
         break;
     }
-
-    console.log(
-      `${value.substring(0, e.currentTarget.selectionStart - 1)} *${e.currentTarget.value.substring(e.currentTarget.selectionStart - 1, e.currentTarget.value.length)}`,
-    );
-    setValue(
-      `${value.substring(0, e.currentTarget.selectionStart - 1)} *${e.currentTarget.value.substring(e.currentTarget.selectionStart - 1, e.currentTarget.value.length)}`,
-    );
   };
 
   const formatIsuzu = (string: string) => {
