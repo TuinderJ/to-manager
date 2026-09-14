@@ -241,10 +241,10 @@ export const LeftPane = () => {
         break;
       default:
         navigator.clipboard.writeText(selectedText);
+        console.log("hi");
         break;
     }
 
-    console.log("hi");
     console.log(
       `${value.substring(0, e.currentTarget.selectionStart - 1)} *${e.currentTarget.value.substring(e.currentTarget.selectionStart - 1, e.currentTarget.value.length)}`,
     );
